@@ -18,3 +18,13 @@ This project includes two key dbt models:
 
 1. **retention_over_time**: A table by month, country, and acquisition taxonomy for key metrics including active customers, sign ups, and churn.
 2. **retention_cohort**: Cohort analysis by month, country, and acquisition taxonomy showing the number of months that number of customers was active for.
+
+## Packages
+
+Packages used in this project are:
+
+- **dbt_utils**: This is used for the unique combination of columns test.
+
+## Notes
+
+- For table and column level descriptions and definitions, see the yaml files.
