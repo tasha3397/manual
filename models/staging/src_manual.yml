@@ -1,0 +1,41 @@
+version: 2
+
+sources:
+  - name: manual
+    database: spotify-405114
+    description: customer and order data
+    tables:
+
+      - name: acq_orders
+        description: csv containing customer_id and their acquisition taxonomy category
+        columns:
+          - name: customer_id
+            description: unique customer identifier
+            tests:
+              - not_null
+              - unique
+          - name: taxonomy_business_category_group   
+            description: acquisition taxonomy - the group the customer signed up for        
+
+      - name: activity
+        description: csv containing subscription dates
+        columns:
+          - name: customer_id
+            description: unique customer identifier
+          - name: subscription_id
+            description: unique subscription identifier
+          - name: from_date
+            description: the date the customer started their subscription
+          - name: to_date
+            description: the date the customer's subscription finished
+
+      - name: customers
+        description: csv containing customer_id and their locations
+        columns:
+          - name: customer_id
+            description: unique customer identifier
+            tests:
+              - not_null
+              - unique
+          - name: customer_country
+            description: country the customer lives in

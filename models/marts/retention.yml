@@ -1,0 +1,43 @@
+version: 2
+
+models:
+  - name: retention_over_time
+    description: table by month, country, and acquisition taxonomy for key metrics active customers, sign ups, and churn
+    columns:
+      - name: month
+      - name: customer_country
+        description: country the customer lives in
+      - name: acquisition_taxonomy
+        description: acquisition taxonomy - the group the customer signed up for  
+      - name: active_customers
+        description: number of customers active that month (including customers that signed up and churned within a month)
+      - name: sign_ups
+        description: number of customers that signed up that month
+      - name: churn
+        description: number of customers that churned that month
+    tests: 
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - month
+            - customer_country
+            - acquisition_taxonomy
+
+  - name: retention_cohort
+    description: cohort analysis by month, country, and acquisition taxonomy showing the number of months that number of customers was active for
+    columns:
+      - name: cohort_month
+      - name: customer_country
+        description: country the customer lives in
+      - name: acquisition_taxonomy
+        description: acquisition taxonomy - the group the customer signed up for  
+      - name: months_active
+        description: number of months the customers were active for 
+      - name: num_customers
+        description: number of customers that were active for that number of months
+    tests: 
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - month
+            - customer_country
+            - acquisition_taxonomy
+            - months_active
